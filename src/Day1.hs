@@ -4,8 +4,6 @@ import Data.List.Split (splitOn)
 import qualified Data.Map as Map
 import Data.List (sort)
 
-type Point = (Int, Int)
-
 run :: IO ()
 run = do
     ls <- readFile "src/day1.txt"
