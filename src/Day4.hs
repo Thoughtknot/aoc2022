@@ -13,8 +13,8 @@ run = do
     let parsedPairs = map parsePair ls
         fullyContainedPairs = [x | x <- parsedPairs, fullyContains x]
         anyOverlapPairs = [x | x <- parsedPairs, anyOverlap x]
-    print $ "Day 3, Part 1: " ++ show (length fullyContainedPairs)
-    print $ "Day 3, Part 2: " ++ show (length anyOverlapPairs)
+    print $ "Day 4, Part 1: " ++ show (length fullyContainedPairs)
+    print $ "Day 4, Part 2: " ++ show (length anyOverlapPairs)
     print "Done"
 
 anyOverlap ::  (Set.Set Int, Set.Set Int) -> Bool
