@@ -29,8 +29,6 @@ getImage m = concat [getCRTChar x (x+1+y*40) |y<-[0..5], x<-[0..39]]
           | abs ((m ! c)-x) <= 1 = if x == 39 then "#\n" else "#"
           | otherwise = if x == 39 then ".\n" else "."
 
-
-
 executeInstructions :: Map.Map Int Int -> [Instruction] -> Int -> Int -> Map.Map Int Int
 executeInstructions m [] x c = m
 executeInstructions m (h:t) x c = case h of
