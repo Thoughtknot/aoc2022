@@ -46,6 +46,7 @@ executable aoc2022
         Day20
         Day21
         Day22
+        Day23
 
     ghc-options:      -threaded -rtsopts -with-rtsopts=-N -O2
     build-depends:    base, network, containers, split, matrix, vector, parsec, bytestring, pqueue
