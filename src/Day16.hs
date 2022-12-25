@@ -35,19 +35,19 @@ run = do
             from /= to]) |
         from <- Map.keys ls,
         from == "AA" || rate ls from /= 0]
-      ds = bfsPath paths ls 30 [(30, 0, ["AA"])] []
+      ds = bfsPath paths ls [(30, 0, ["AA"])] []
     print $ "Day 16, Part 1: " ++ show (maximum $ map fst ds)
-    let possibles = bfsPath paths ls 26 [(26, 0, ["AA"])] []
+    let possibles = bfsPath paths ls [(26, 0, ["AA"])] []
         pairs = [(xi+yi,(xi,xp),(yi,yp)) | ((xi,xp):ys) <- tails possibles, (yi, yp) <- ys, null (xp `intersect` yp)]
         mv = maximumBy (compare `on` key) pairs
     print $ "Day 16, Part 2: " ++ show (key mv)
 
-bfsPath :: D -> M -> Int -> [(Int,Int,[String])] -> [(Int, [String])]  -> [(Int, [String])]
-bfsPath dist m s [] pp = pp
-bfsPath dist m s (x@(t, p, []):xs) pp = error "Empty path"
-bfsPath dist m s ((t, p, path@(cur:cs)):tl) pp
-  | null new = bfsPath dist m s tl ((p,init path):pp)
-  | otherwise = bfsPath dist m s (new ++ tl) pp
+bfsPath :: D -> M -> [(Int,Int,[String])] -> [(Int, [String])]  -> [(Int, [String])]
+bfsPath dist m [] pp = pp
+bfsPath dist m (x@(t, p, []):xs) pp = error "Empty path"
+bfsPath dist m ((t, p, path@(cur:cs)):tl) pp
+  | null new = bfsPath dist m tl ((p,init path):pp)
+  | otherwise = bfsPath dist m (new ++ tl) pp
     where
       new = [(t-l-1, p + rate m k * (t-l-1), k:path) | (k,l)<-Map.toList (dist ! cur), l <= t - 2 && k `notElem` path]
 
